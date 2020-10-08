@@ -39,14 +39,17 @@ tar --help
 ~- [MFC](https://brain.cc.kogakuin.ac.jp/~kanamaru/lecture/prog1/03-intro01.html)~
 
 ~まずcppでGUIプログラミングをおこなうためには、Visual Studioで使えるMFCパッケージが必要らしい。 つまり事前にVSのインストールが必須。~  
+
 使用するPCがmacであるためwindowsアプリのためのMFCが使用できなかった。macでFLTKというライブラリでできそうである。
 
-- [FLTK](https://k1mny.hatenablog.com/entry/2017/10/12/125220)
+- [FLTK](https://k1mny.hatenablog.com/entry/2017/10/12/125220)  
+[公式ドキュメント](https://www.fltk.org/doc-1.3/classFl__Button.html)
 
-- [.NET Framework](https://docs.microsoft.com/ja-jp/dotnet/framework/get-started/)
 
-.NET FrameworkはwindowsのアプリケーションのSDKである。こちらもC++で利用可能である。
-
+-- FLTKのインストール
+```
+brew install fltk 
+```
 
 ボタンを押すことで事前にセッティングしたオーディオファイルを流すような仕組みが必要となる。
 
