@@ -69,3 +69,9 @@ wavファイルなどの音声メディアファイルをダウンロードす�
 - [フリーWave,MP3](http://www.ne.jp/asahi/music/myuu/wave/wave.htm)
 - [ピアノ音階](https://maoudamashii.jokersounds.com/list/se12.html)
 
+
+実装コードをアップロードしました。実装コード名はC4.cppです。音階のC４の効果音を鳴らすプログラムとなります。
+
+- ボトルネック
+
+ライブラリーのリンク設定がうまくいかず、SDL-Mixerのincludeができなかったので最後までコンパイルがうまくできなかった。来週までにはできる状態にします。
