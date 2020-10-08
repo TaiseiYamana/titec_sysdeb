@@ -39,6 +39,12 @@ tar --help
 - [MFC](https://brain.cc.kogakuin.ac.jp/~kanamaru/lecture/prog1/03-intro01.html)
 
 まずcppでGUIプログラミングをおこなうためには、Visual Studioで使えるMFCパッケージが必要らしい。 つまり事前にVSのインストールが必須。 
+
+- [.NET Framework](https://docs.microsoft.com/ja-jp/dotnet/framework/get-started/)
+
+.NET FrameworkはwindowsのアプリケーションのSDKである。こちらもC++で利用可能である。
+
+
 ボタンを押すことで事前にセッティングしたオーディオファイルを流すような仕組みが必要となる。
 
 C++でwavファイルを再生するAPIを調べた。  
