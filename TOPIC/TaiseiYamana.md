@@ -21,7 +21,7 @@ tar --help
 
 - 試しにcolattz(5)で実行したところ結果が１になる。
 
-- Compiler Explorer　をしようしてもいいことがわかった。
+- Compiler Explorer　を使用してもいいことがわかった。
 
 
 
@@ -31,4 +31,13 @@ tar --help
 
 - 内容:
 
-RaspberryPiからタッチパネルを操作するような模擬ピアノをcppで作成する。
+ボタンを押すと設定した音がなるcppベースのピアノみたいなGUIの制作
+目的：とりあえずCppで何かしらのOSSを作成したいと思った。
+
+情報収集
+
+- [MFC](https://brain.cc.kogakuin.ac.jp/~kanamaru/lecture/prog1/03-intro01.html)
+まずcppでGUIプログラミングをおこなうためには、Visual Studioで使えるMFCパッケージが必要らしい。
+
+
+
