@@ -53,7 +53,10 @@ brew install fltk
 
 ボタンを押すことで事前にセッティングしたオーディオファイルを流すような仕組みが必要となる。
 
-C++でwavファイルを再生するAPIを調べた。  
+C++でwavファイルを再生するAPIを調べた。
+
+https://stackoverflow.com/questions/9981087/simple-c-sound-api
+
 - [PlaySound API](http://yamatyuu.net/computer/program/sdk/other/playsound/index.html)
 
 他にも使用できそうなAPI
