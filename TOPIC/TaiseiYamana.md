@@ -40,7 +40,7 @@ tar --help
 
 ~まずcppでGUIプログラミングをおこなうためには、Visual Studioで使えるMFCパッケージが必要らしい。 つまり事前にVSのインストールが必須。~  
 
-使用するPCがmacであるためwindowsアプリのためのMFCが使用できなかった。macでFLTKというライブラリでできそうである。
+使用するPCがmacであるためwindowsアプリ向けのMFCが使用できなかった。macでFLTKというライブラリでできそうである。
 
 - [FLTK](https://k1mny.hatenablog.com/entry/2017/10/12/125220)  
 [公式ドキュメント](https://www.fltk.org/doc-1.3/classFl__Button.html)
