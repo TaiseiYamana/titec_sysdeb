@@ -44,7 +44,11 @@ tar --help
 C++でwavファイルを再生するAPIを調べた。  
 - [PlaySound API](http://yamatyuu.net/computer/program/sdk/other/playsound/index.html)
 
+他にも使用できそうなAPI
+- [mciSendString](http://www.sm.rim.or.jp/~shishido/pmidi.html)  
 
 
-
+wavファイルなどの音声メディアファイルをダウンロードするためのサイト
+- [フリーWave,MP3](http://www.ne.jp/asahi/music/myuu/wave/wave.htm)
+- [ピアノ音階](https://maoudamashii.jokersounds.com/list/se12.html)
 
