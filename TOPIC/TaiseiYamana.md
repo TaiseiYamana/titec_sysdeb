@@ -39,7 +39,8 @@ tar --help
 - [MFC](https://brain.cc.kogakuin.ac.jp/~kanamaru/lecture/prog1/03-intro01.html)
 
 まずcppでGUIプログラミングをおこなうためには、Visual Studioで使えるMFCパッケージが必要らしい。  
-ボタンを押すことで事前にセッティングしたオーディオファイルを流すようにしてみる。
+ボタンを押すことで事前にセッティングしたオーディオファイルを流すような仕組みが必要となる。
+s
 
 C++でwavファイルを再生するAPIを調べた。  
 - [PlaySound API](http://yamatyuu.net/computer/program/sdk/other/playsound/index.html)
