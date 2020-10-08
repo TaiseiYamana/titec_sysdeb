@@ -32,7 +32,7 @@ tar --help
 - 内容:
 
 ボタンを押すと設定した音がなるcppベースのピアノみたいなGUIの制作
-目的：とりあえずCppで何かしらのOSSを作成したいと思った。
+目的：とりあえずCppで何かしらのOSSを作成したいと思った。既出しているネタであるとは承知している。
 
 情報収集
 
@@ -40,7 +40,6 @@ tar --help
 
 まずcppでGUIプログラミングをおこなうためには、Visual Studioで使えるMFCパッケージが必要らしい。  
 ボタンを押すことで事前にセッティングしたオーディオファイルを流すような仕組みが必要となる。
-s
 
 C++でwavファイルを再生するAPIを調べた。  
 - [PlaySound API](http://yamatyuu.net/computer/program/sdk/other/playsound/index.html)
