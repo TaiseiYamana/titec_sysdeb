@@ -59,9 +59,11 @@ https://stackoverflow.com/questions/9981087/simple-c-sound-api
 
 - [PlaySound API](http://yamatyuu.net/computer/program/sdk/other/playsound/index.html)
 
-他にも使用できそうなAPI
+他にも使用できそうなAPI  
 - [mciSendString](http://www.sm.rim.or.jp/~shishido/pmidi.html)  
 
+結果的に使用したAPIはSDL−Mixer  
+https://srad.jp/~fslasht/journal/217044/
 
 wavファイルなどの音声メディアファイルをダウンロードするためのサイト
 - [フリーWave,MP3](http://www.ne.jp/asahi/music/myuu/wave/wave.htm)
