@@ -3,10 +3,16 @@
 
 ASCIIコード表を調べてctr+Fで「#」を調べた。
 
+man ascii でも可能。
+
 # 演習2
 tar -zcvf abc.tar.gz abcls
 
 [参考にしたサイト](https://qiita.com/supersaiakujin/items/c6b54e9add21d375161f)
+
+tar --help
+
+で他のoptionが確認ができる
 
 # 演習3
 [作業記録]
