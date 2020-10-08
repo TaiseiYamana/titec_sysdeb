@@ -36,9 +36,12 @@ tar --help
 
 情報収集
 
-- [MFC](https://brain.cc.kogakuin.ac.jp/~kanamaru/lecture/prog1/03-intro01.html)
+~- [MFC](https://brain.cc.kogakuin.ac.jp/~kanamaru/lecture/prog1/03-intro01.html)~
 
-まずcppでGUIプログラミングをおこなうためには、Visual Studioで使えるMFCパッケージが必要らしい。 つまり事前にVSのインストールが必須。 
+~まずcppでGUIプログラミングをおこなうためには、Visual Studioで使えるMFCパッケージが必要らしい。 つまり事前にVSのインストールが必須。~  
+使用するPCがmacであるためwindowsアプリのためのMFCが使用できなかった。macでFLTKというライブラリでできそうである。
+
+- [FLTK](https://k1mny.hatenablog.com/entry/2017/10/12/125220)
 
 - [.NET Framework](https://docs.microsoft.com/ja-jp/dotnet/framework/get-started/)
 
