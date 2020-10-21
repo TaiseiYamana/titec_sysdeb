@@ -228,4 +228,50 @@ Process 27137 exited with status = 0 (0x00000000)
 [参照サイト]
 - 4.1:[https://okwave.jp/qa/q6354980.html](https://okwave.jp/qa/q6354980.html)
 
+# 演習5
+### 使用したコード
+演習1で使用した`array-out-of.cpp`をそのまま使用
+
+## 実行
+watchpointを設定するために変数が定義される行までブレイクポイントを決めて実行する。
+```
+$ lldb array-out-of
+(lldb) target create "array-out-of"
+Current executable set to '/Users/yamanataisei/Documents/lectire/lec_2_1/array-out-of' (x86_64).
+(lldb) b array-out-of.cpp:2
+Breakpoint 1: where = array-out-of`main + 35 at array-out-of.cpp:5:13, address = 0x0000000100003f23
+(lldb) r
+```
+
+### watchpointの設定
+試しに定義される配列aのa[50]をwatchpointとして設定。
+```
+watchpoint set variable a[50]
+Watchpoint created: Watchpoint 1: addr = 0x7ffeefbff8e8 size = 4 state = enabled type = w
+    declare @ '/Users/yamanataisei/Documents/lectire/lec_2_1/array-out-of.cpp:4'
+    watchpoint spec = 'a[50]'
+    new value: 65536
+```
+
+### 再度実行
+```
+(lldb) c
+Process 28331 resuming
+
+Watchpoint 1 hit:
+old value: 65536
+new value: 50
+Process 28331 stopped
+* thread #1, queue = 'com.apple.main-thread', stop reason = watchpoint 1
+    frame #0: 0x0000000100003f4e array-out-of`main at array-out-of.cpp:5:31
+   2   	
+   3   	int main() {
+   4   	    int a[100];
+-> 5   	    for(int i = 0; i <= 100; i++) {
+   6   	    a[i] = i;
+   7   	  }
+   8   	    return 0;
+Target 0: (array-out-of) stopped.
+```
+watchpointの変わったので止まった値が変化したことによって実行が変わった。初期化時の値は`65336`であったが、`50`になったと確認できる。
 
