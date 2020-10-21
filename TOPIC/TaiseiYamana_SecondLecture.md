@@ -136,6 +136,33 @@ drwxrwxrwt   2 root  wheel    64  2 29  2020 cores
 ```
 `参照3.2`より`「1777」の先頭の1はファイルの持ち主以外が勝手に消す事はできなくなる`設定である。
 
+### 権限の戻し方
+どこかの記事に、macではcoreファイルが自動的に生成されるとHDDの圧迫に繋がるらしいとのことで、実験の最後権限を戻す。
+
+```
+$ sudo chmod 755 cores
+```
+
+### 使用したコード
+参照3.3より、クイックソードの`quicksort.c`を借りて実行した。(coreファイルの出力の調査にかなり時間がかかったため)
+
+## 実行
+
+```
+$ clang -O3 -g -o quicksort quicksort.c
+$ ulimit -c unlimited
+$ ./quicksort
+Segmentation fault: 11 (core dumped)
+```
+
+### corefileの確認
+```
+$ ls /cores
+core.26576
+```
+
+
 [参照サイト]
 - 3.1:[macos-MacCatalinaコアファイルの場所-スタックオーバーフロー](https://stackoverflow.com/questions/58844265/mac-catalina-corefile-locations)
 - 3.2:[今さら聞きづらい「ファイルパーミッション」について (フェンリル | デベロッパーズブログ)](https://blog.fenrir-inc.com/jp/2012/02/file_permission.html)
+- 3.3:[gdbを使ってコアダンプの原因を解析 - それが僕には楽しかったんです。](https://rabbitfoot141.hatenablog.com/entry/2016/11/14/153101)
