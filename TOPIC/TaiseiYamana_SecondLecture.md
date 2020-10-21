@@ -117,6 +117,25 @@ nを何回か押してa[0]の値を再確認してみたところa[0]の値が�
 
 # 演習3
 ## 事前準備
-mac OSのcoreファイルは`/cores`のディレクトリ下に置かれる。しかし、このディレクトリの権限に
-- 2.1:[OS XでGDBを使う（ためにコード署名をする） - Qiita](https://qiita.com/takahashim/items/204ffa698afe09bd4e28)か
-- 2.1:[OS XでGDBを使う（ためにコード署名をする） - Qiita](https://qiita.com/takahashim/items/204ffa698afe09bd4e28)
+mac OSのcoreファイルは`/cores`のディレクトリ下に置かれる。しかし、このディレクトリの権限に書き取り権限がないためデフォルトではこのディレクトリー内にcoreファイルが生成されない。`参照3.1`ではcoresの書き込み権限を与えることによって解決していた。
+
+### 手順
+
+まずcoresを含むディレクトリでデフォルトの権限を確認する。するとグループと全員の書き込みの権限がないことがわかる。
+```
+$ ls -l
+drwxr-xr-x   2 root  wheel    64  2 29  2020 cores
+```
+
+ここで、chmodコマンドで書き込みの権限を与える。
+
+```
+$ sudo chmod 1777 cores
+$ ls -l
+drwxrwxrwt   2 root  wheel    64  2 29  2020 cores
+```
+`参照3.2`より`「1777」の先頭の1はファイルの持ち主以外が勝手に消す事はできなくなる`設定である。
+
+[参照サイト]
+- 3.1:[macos-MacCatalinaコアファイルの場所-スタックオーバーフロー](https://stackoverflow.com/questions/58844265/mac-catalina-corefile-locations)
+- 3.2:[今さら聞きづらい「ファイルパーミッション」について (フェンリル | デベロッパーズブログ)](https://blog.fenrir-inc.com/jp/2012/02/file_permission.html)
