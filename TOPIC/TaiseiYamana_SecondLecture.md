@@ -140,7 +140,7 @@ drwxrwxrwt   2 root  wheel    64  2 29  2020 cores
 どこかの記事に、macではcoreファイルが自動的に生成されるとHDDの圧迫に繋がるらしいとのことで、実験の最後権限を戻す。
 
 ```
-$ sudo chmod 755 cores
+$ sudo chmod 755 /cores
 ```
 
 ### 使用したコード
@@ -160,9 +160,72 @@ Segmentation fault: 11 (core dumped)
 $ ls /cores
 core.26576
 ```
+### coreファイルをロードしながらlldb起動
+```
+$ lldb quicksort -c /cores/core.26576
+(lldb) target create "quicksort" --core "/cores/core.26576"
+Core file '/cores/core.26576' (x86_64) was loaded.
+```
 
+### 結果
+```
+(lldb) r
+There is a running process, kill it and restart?: [Y/n] y
+Process 26909 launched: '/Users/yamanataisei/Documents/lectire/lec_2_1/quicksort' (x86_64)
+Process 26909 stopped
+* thread #1, queue = 'com.apple.main-thread', stop reason = EXC_BAD_ACCESS (code=1, address=0x7ffeefc00000)
+    frame #0: 0x0000000100003de0 quicksort`quicksort(array=0x00007ffeefbff9a0, left_index=0, right_index=8) at quicksort.c:16:21
+   13  	        while(array[left] < pivot)
+   14  	            left++;
+   15  	        //右側で基点より小さい点を探す
+-> 16  	        while(pivot < array[right])
+   17  	            right++;//ここが間違っている
+   18  	
+   19  	        if(right < left)
+Target 0: (quicksort) stopped.
+```
+問題がある行で止まっていました。`right++;`が配列の範囲外を参照するとのことで`reason = EXC_BAD_ACCESScore`と表示されていました。しかしcoreファイルをロードした時の違いがあまりよくわかりません。
 
 [参照サイト]
 - 3.1:[macos-MacCatalinaコアファイルの場所-スタックオーバーフロー](https://stackoverflow.com/questions/58844265/mac-catalina-corefile-locations)
 - 3.2:[今さら聞きづらい「ファイルパーミッション」について (フェンリル | デベロッパーズブログ)](https://blog.fenrir-inc.com/jp/2012/02/file_permission.html)
 - 3.3:[gdbを使ってコアダンプの原因を解析 - それが僕には楽しかったんです。](https://rabbitfoot141.hatenablog.com/entry/2016/11/14/153101)
+
+# 演習4
+知識補完のために`参照4.1`を読んだ。
+
+### 使用したコード
+演習1で使用した`array-out-of.cpp`に`asm("int3");`を組み込んで使用。
+
+##　実行結果
+
+```
+$ lldb ./int3
+(lldb) target create "./int3"
+Current executable set to '/Users/yamanataisei/Documents/lectire/lec2_4/int3' (x86_64).
+(lldb) r
+Process 27137 launched: '/Users/yamanataisei/Documents/lectire/lec2_4/int3' (x86_64)
+debug1
+Process 27137 stopped
+* thread #1, queue = 'com.apple.main-thread', stop reason = EXC_BREAKPOINT (code=EXC_I386_BPT, subcode=0x0)
+    frame #0: 0x0000000100003f47 int3`main at int3.c:6:3
+   3   	int main() {
+   4   	  printf("debug1\n");
+   5   	  asm("int3");
+-> 6   	  printf("debug2\n");
+   7   	  printf("debug3\n");
+   8   	}
+Target 0: (int3) stopped.
+(lldb) reset
+error: 'reset' is not a valid command.
+(lldb) c
+Process 27137 resuming
+debug2
+debug3
+Process 27137 exited with status = 0 (0x00000000) 
+```
+
+[参照サイト]
+- 4.1:[https://okwave.jp/qa/q6354980.html](https://okwave.jp/qa/q6354980.html)
+
+
