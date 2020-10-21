@@ -200,33 +200,25 @@ Target 0: (quicksort) stopped.
 ##　実行結果
 
 ```
-$ lldb ./int3
-(lldb) target create "./int3"
-Current executable set to '/Users/yamanataisei/Documents/lectire/lec2_4/int3' (x86_64).
+$ lldb array-out-of
+(lldb) target create "array-out-of"
+Current executable set to '/Users/yamanataisei/Documents/lectire/lec_2_1/array-out-of' (x86_64).
 (lldb) r
-Process 27137 launched: '/Users/yamanataisei/Documents/lectire/lec2_4/int3' (x86_64)
-debug1
-Process 27137 stopped
+Process 27515 launched: '/Users/yamanataisei/Documents/lectire/lec_2_1/array-out-of' (x86_64)
+Process 27515 stopped
 * thread #1, queue = 'com.apple.main-thread', stop reason = EXC_BREAKPOINT (code=EXC_I386_BPT, subcode=0x0)
-    frame #0: 0x0000000100003f47 int3`main at int3.c:6:3
-   3   	int main() {
-   4   	  printf("debug1\n");
-   5   	  asm("int3");
--> 6   	  printf("debug2\n");
-   7   	  printf("debug3\n");
-   8   	}
-Target 0: (int3) stopped.
-(lldb) reset
-error: 'reset' is not a valid command.
-(lldb) c
-Process 27137 resuming
-debug2
-debug3
-Process 27137 exited with status = 0 (0x00000000) 
+    frame #0: 0x0000000100003f63 array-out-of`main at array-out-of.cpp:8:5
+   5   	    for(int i = 0; i <= 100; i++) {
+   6   	    a[i] = i;
+   7   	  }
+-> 8   	    asm("int3");
+   9   	    return 0;
+   10  	}
+Target 0: (array-out-of) stopped.
 ```
 
 [参照サイト]
-- 4.1:[https://okwave.jp/qa/q6354980.html](https://okwave.jp/qa/q6354980.html)
+- 4.1:[__asm int 3でのブレイクポイントについて - OKWAVE](https://okwave.jp/qa/q6354980.html)
 
 # 演習5
 ### 使用したコード
