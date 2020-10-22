@@ -268,3 +268,35 @@ Target 0: (array-out-of) stopped.
 watchpointの変わったので止まった値が変化したことによって実行が変わった。初期化時の値は`65336`であったが、`50`になったと確認できる。
 
 # 演習6
+新しくOSSを作り直したい。OSSはpythonで書きたいので、デバック手法をまとめる。
+
+## pdb
+pythonではpdbを使ったでバック手法がある。
+
+### 練習コード
+```
+#hello.py
+msg = "Hello world"
+
+def hello(txt):
+    print(txt)
+
+hello(msg)
+print("Done.")
+```
+
+### 実行
+<img width="534" alt="スクリーンショット 2020-10-23 3 06 01" src="https://user-images.githubusercontent.com/54575368/96912099-c70fe380-14dc-11eb-873a-fa2f86543c8c.png">
+
+
+次にpythonでGUIアプリケーションを開発したいと思うので、GUIが作れるライブラリーを調べた。
+## gui開発ライブラリー
+### Tkinter
+### Kivy
+### PyQt
+### wxPython
+ここでTkinterはpython標準ライブラリらしいのでこのライブラリーを使用してみる。
+
+[参照サイト]
+- 6.1:[Pythonでpdbを使ったデバッグ - Qiita](https://qiita.com/patekawa/items/3e79fe58b3b2f14dbab5)
+- 6.2:[PythonでGUIアプリを作成するのにオススメのライブラリとは？現役エンジニアが解説【初心者向け】 | TechAcademyマガジン](https://techacademy.jp/magazine/21805)
