@@ -197,7 +197,7 @@ Target 0: (quicksort) stopped.
 ### 使用したコード
 演習1で使用した`array-out-of.cpp`に`asm("int3");`を組み込んで使用。
 
-##　実行結果
+## 実行結果
 
 ```
 $ lldb array-out-of
