@@ -419,6 +419,65 @@ $ git log --graph --all
 |     ハンクのコミット
 | 
 ```
+それぞれのブランチにコミットを確認
 
+masterにHEADを移動、br-aとマージ。するとhello.c内の競合が発生したというメッセージに表示される。
+```
+$ git checkout master
+$ git merge br-a
 
+Auto-merging hello.c
+CONFLICT (content): Merge conflict in hello.c
+Automatic merge failed; fix conflicts and then commit the result.
+```
+## masterブランチのhello.cの中身を確認。
+<img width="578" alt="スクリーンショット 2020-10-23 16 08 29" src="https://user-images.githubusercontent.com/54575368/97017477-ecf2c200-1588-11eb-9dd4-feed25b22d47.png">
+
+## hello.cの内容を次の様に書き換えコミットをおこなう。
+
+### 変更後のhello.c
+<img width="407" alt="スクリーンショット 2020-10-23 16 13 12" src="https://user-images.githubusercontent.com/54575368/97017712-38a56b80-1589-11eb-911a-ef41a08e1e08.png">
+
+### コミットとマージ
+```
+$ git add hello.c
+$ git commit -m "confilict merge br-a"
+$ git merge --no-ff br-a
+```
+
+## コミット履歴を確認
+```
+*   commit 94c7735b8d7e18ec7533d1d787b9a980af4d67fa (HEAD -> master)
+|\  Merge: cdf0baa 363c8d0
+| | Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| | Date:   Fri Oct 23 16:10:09 2020 +0900
+| | 
+| |     Merge branch 'br-a'
+| | 
+| * commit 363c8d08aad7e0ea564eb64b0e40e12e66eb79b5 (br-a)
+| | Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| | Date:   Fri Oct 23 16:00:53 2020 +0900
+| | 
+| |     For confilict at br-a
+| | 
+* | commit cdf0baa660a5f424fdd65cb7a389748bcbb9521e
+| | Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| | Date:   Fri Oct 23 15:56:49 2020 +0900
+| | 
+| |     For confilict at main
+| |   
+* |   commit 0baba47a2daaa81df6a8baf42a7d18e9dc37b204
+|\ \  Merge: 6eb9d96 c8bfc87
+| |/  Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| |   Date:   Fri Oct 23 15:54:01 2020 +0900
+| |   
+| |       Merge branch 'br-a'
+| | 
+| * commit c8bfc8760eba7c9c371cb006a042954d77607f05 (tag: tag-a)
+|/  Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+|   Date:   Fri Oct 23 15:39:49 2020 +0900
+|   
+|       first new branch create
+| 
+```
 
