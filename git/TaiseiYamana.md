@@ -626,73 +626,66 @@ git commit -m "4th commit"
 ```
 ### 変更前のコミット履歴
 ```
-*   commit 3ebaa2a2cba3e09c895e2c041f5310d866b40333 (HEAD -> master)
-|\  Merge: a264c03 ab94856
-| | Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
-| | Date:   Sat Oct 24 02:06:11 2020 +0900
-| | 
-| |     Merge commit 'ab94856b7b1604dd42eabfa6294a67f741adbc6c'
-| | 
-| * commit ab94856b7b1604dd42eabfa6294a67f741adbc6c
-| | Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
-| | Date:   Sat Oct 24 01:59:47 2020 +0900
-| | 
-| |     4th commit
-| | 
-| * commit a9ba0339abc09121ab3930749dc36841bce76725
-| | Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
-| | Date:   Sat Oct 24 01:59:31 2020 +0900
-| | 
-| |     3rd commit
-| | 
-| * commit 6cd4d71dddd92ec01c8295a4fa9ff68c1e43c45f
-| | Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
-| | Date:   Sat Oct 24 01:59:12 2020 +0900
-| | 
-| |     2nd commit
-| | 
-| * commit 4e97b34545938324bfc509997a37cce768285089
-|/  Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
-|   Date:   Sat Oct 24 01:58:50 2020 +0900
-|   
-|       1st commit
+* commit bb6e1094ec93b9f71a41198c18ae623f8aded1bb (HEAD -> master)
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Sat Oct 24 02:42:25 2020 +0900
 | 
+|     4th commit
+| 
+* commit c079defe986472c06fa5f6961a82657000c982d4
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Sat Oct 24 02:42:11 2020 +0900
+| 
+|     3rd commit
+| 
+* commit da44d6b804746ab953788a9fd93c4196a80d8a5e
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Sat Oct 24 02:41:58 2020 +0900
+| 
+|     2nd commit
+| 
+* commit 1319f45b9383fa2a02f646f28b8f420413ddac18
+  Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+  Date:   Sat Oct 24 02:41:43 2020 +0900
+  
+      1st commit
+
 ```
 訳あって、マージしているのでブランチが二本あります。
 
 ### コミットの順番を入れ替える
 エディタが開くので入れ替えたいコミットの行を入れ替える。2nd commitと3rd commitを入れ替える。
 ```
-$ git rebase -i 4e97b34
+$ git rebase -i 1319f45
 Successfully rebased and updated refs/heads/master.
 ```
 
 ### 変更後のコミット履歴
 ```
-* commit 6af55612974aee18a02bf4ff5254444b010b5a15 (HEAD -> master)
+* commit 056e12fd12c56dc97a37d24a145d7abec2963759 (HEAD -> master)
 | Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
-| Date:   Sat Oct 24 01:59:47 2020 +0900
+| Date:   Sat Oct 24 02:42:25 2020 +0900
 | 
 |     4th commit
 | 
-* commit edec38721cb89d340c56e497dac1934e7cacc73c
+* commit 138db2c7d952eb6533f18d8c0e76a1574b2343af
 | Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
-| Date:   Sat Oct 24 01:59:12 2020 +0900
+| Date:   Sat Oct 24 02:41:58 2020 +0900
 | 
 |     2nd commit
 | 
-* commit 88d17d41554ef854b22cf38e79b8c3e71cba229f
+* commit 4c269588fe65dab80c8cabfdacf95f17f8fcdc0b
 | Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
-| Date:   Sat Oct 24 01:59:31 2020 +0900
+| Date:   Sat Oct 24 02:42:11 2020 +0900
 | 
 |     3rd commit
 | 
-* commit 4e97b34545938324bfc509997a37cce768285089
-| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
-| Date:   Sat Oct 24 01:58:50 2020 +0900
-| 
-|     1st commit
-| 
+* commit 1319f45b9383fa2a02f646f28b8f420413ddac18
+  Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+  Date:   Sat Oct 24 02:41:43 2020 +0900
+  
+      1st commit
+
 ```
 ##　ファイルの中身が変わってしまうコミットの入れ替えはCONFLICTのエラーが生じる
 例えば、2ndと4thのcommitを入れ替えようとするとエラーメッセージが出力される。commitの入れ替えができるのは、この様に、confilictを避けなければならない。
@@ -704,5 +697,35 @@ Resolve all conflicts manually, mark them as resolved with
 You can instead skip this commit: run "git rebase --skip".
 To abort and get back to the state before "git rebase", run "git rebase --abort".
 Could not apply 2b0a62a... 4th commit
+```
+## commitメッセージを変更
+```
+$ git commit --amend -m "4th commit : 2nd commitと3rd commitを入れ替えた"
+```
+### 変更後のコミット履歴
+```
+* commit 7c48eef7da715f9bf0efb526862eb274570c6179 (HEAD -> master)
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Sat Oct 24 02:42:25 2020 +0900
+| 
+|     4th commit : 2nd commitと3rd commitを入れ替えた
+| 
+* commit 138db2c7d952eb6533f18d8c0e76a1574b2343af
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Sat Oct 24 02:41:58 2020 +0900
+| 
+|     2nd commit
+| 
+* commit 4c269588fe65dab80c8cabfdacf95f17f8fcdc0b
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Sat Oct 24 02:42:11 2020 +0900
+| 
+|     3rd commit
+| 
+* commit 1319f45b9383fa2a02f646f28b8f420413ddac18
+  Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+  Date:   Sat Oct 24 02:41:43 2020 +0900
+  
+      1st commit
 ```
 
