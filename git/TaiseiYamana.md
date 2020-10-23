@@ -651,7 +651,6 @@ git commit -m "4th commit"
       1st commit
 
 ```
-訳あって、マージしているのでブランチが二本あります。
 
 ### コミットの順番を入れ替える
 エディタが開くので入れ替えたいコミットの行を入れ替える。2nd commitと3rd commitを入れ替える。
@@ -687,7 +686,7 @@ Successfully rebased and updated refs/heads/master.
       1st commit
 
 ```
-##　ファイルの中身が変わってしまうコミットの入れ替えはCONFLICTのエラーが生じる
+## ファイルの中身が変わってしまうコミットの入れ替えはCONFLICTのエラーが生じる
 例えば、2ndと4thのcommitを入れ替えようとするとエラーメッセージが出力される。commitの入れ替えができるのは、この様に、confilictを避けなければならない。
 ```
 CONFLICT (modify/delete): test2.txt deleted in HEAD and modified in 2b0a62a... 4th commit. Version 2b0a62a... 4th commit of test2.txt left in tree.
