@@ -384,7 +384,7 @@ $ git merge --no-ff br-a
 ### br-a側 hello.c
 <img width="533" alt="スクリーンショット 2020-10-23 23 21 47" src="https://user-images.githubusercontent.com/54575368/97015453-8ff60c80-1586-11eb-8b34-4dfabb13fd9a.png">
 
-## コミット後のコミット履歴
+### コミット後のコミット履歴
 ```
 $ git log --graph --all
 * commit 363c8d08aad7e0ea564eb64b0e40e12e66eb79b5 (HEAD -> br-a)
@@ -421,6 +421,7 @@ $ git log --graph --all
 ```
 それぞれのブランチにコミットを確認
 
+## 競合するマージを実施
 masterにHEADを移動、br-aとマージ。するとhello.c内の競合が発生したというメッセージに表示される。
 ```
 $ git checkout master
@@ -432,6 +433,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 ```
 ## masterブランチのhello.cの中身を確認。
 <img width="578" alt="スクリーンショット 2020-10-23 16 08 29" src="https://user-images.githubusercontent.com/54575368/97017477-ecf2c200-1588-11eb-9dd4-feed25b22d47.png">
+ファイルないに競合の状態が記録されている。
 
 ## hello.cの内容を次の様に書き換えコミットをおこなう。
 
@@ -479,5 +481,228 @@ $ git merge --no-ff br-a
 |   
 |       first new branch create
 | 
+```
+
+# 演習7
+## br-bブランチの作成とコミット
+### ブランチ作成
+```
+$ git branch br-b
+$ git checkout br-b
+```
+### br-bにいくつかの変更を加えてコミット
+br-b.textというファイルを加えてコミットをする。
+```
+$ touch br-b.text
+$ git add br-b.text
+$ $ git commit -m "rebase test"
+```
+２回目のコミット
+```
+$ vim br-b.text
+$ git add br-b.text
+$ git commit -m "br-b second commit"
+```
+
+
+### コミット履歴表示
+```
+* commit 36d5c5170f63a704153624b46c870e2177444ec8 (HEAD -> br-b)
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Fri Oct 23 16:25:23 2020 +0900
+| 
+|     br-b second commit
+| 
+* commit 86d39ae7f48e4c857d24113d304a6f60425c9e75
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Fri Oct 23 16:24:07 2020 +0900
+| 
+|     rebase test
+|   
+*   commit 94c7735b8d7e18ec7533d1d787b9a980af4d67fa (master)
+    Merge: cdf0baa 363c8d0
+    Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+    Date:   Fri Oct 23 16:10:09 2020 +0900
+
+     Merge branch 'br-a'
+```
+masterブランチの上にbr-bブランチが乗っかっている状態になる。
+
+## masterブランチ側に変更を加えてコミット
+```
+$ git checkout master
+$ touch master.text
+$ git add master.text
+$ git commit -m "rebase test"
+```
+
+### コミット履歴表示
+```
+* commit edcfbb1a16bd74f15b635f03f2e51d78406505ab (HEAD -> master)
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Fri Oct 23 16:27:30 2020 +0900
+| 
+|     rebase test
+|   
+| * commit 36d5c5170f63a704153624b46c870e2177444ec8 (br-b)
+| | Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| | Date:   Fri Oct 23 16:25:23 2020 +0900
+| | 
+| |     br-b second commit
+| | 
+| * commit 86d39ae7f48e4c857d24113d304a6f60425c9e75
+|/  Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+|   Date:   Fri Oct 23 16:24:07 2020 +0900
+|   
+|       rebase test
+|   
+*   commit 94c7735b8d7e18ec7533d1d787b9a980af4d67fa (master)
+    Merge: cdf0baa 363c8d0
+    Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+    Date:   Fri Oct 23 16:10:09 2020 +0900
+
+     Merge branch 'br-a'
+```
+
+## br-bを更新後のmaster上にrebaseする。
+```
+$ git checkout br-b
+$ git rebase master
+```
+
+### コミット履歴表示
+```
+* commit 115ae16d84e36eb2e884f1c091a14490c949313e (HEAD -> br-b)
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Fri Oct 23 16:25:23 2020 +0900
+| 
+|     br-b second commit
+| 
+* commit da7eca084950c23dfc203f9a6cef8badcd89f719
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Fri Oct 23 16:24:07 2020 +0900
+| 
+|     rebase test
+| 
+* commit edcfbb1a16bd74f15b635f03f2e51d78406505ab (master)
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Fri Oct 23 16:27:30 2020 +0900
+| 
+|     rebase test
+| 
+*   commit 94c7735b8d7e18ec7533d1d787b9a980af4d67fa (master)
+    Merge: cdf0baa 363c8d0
+    Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+    Date:   Fri Oct 23 16:10:09 2020 +0900
+
+     Merge branch 'br-a'
+```
+ディレクトリ中身確認
+```
+$ ls
+br-b.text	foo		hello.c		master.text	quicksort.c
+```
+br-b.textとmaster.textの両方があることを確認した。
+
+
+# 演習8
+## 準備
+```
+echo "Hello World" > test1.txt
+git add test1.txt
+git commit -m "1st commit"
+
+echo "Hello World" > test2.txt
+git add test2.txt
+git commit -m "2nd commit"
+
+echo "AAAAA" >> test1.txt
+git add test1.txt
+git commit -m "3rd commit"
+
+echo "BBBBB" >> test2.txt
+git add test2.txt
+git commit -m "4th commit"
+```
+### 変更前のコミット履歴
+```
+*   commit 3ebaa2a2cba3e09c895e2c041f5310d866b40333 (HEAD -> master)
+|\  Merge: a264c03 ab94856
+| | Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| | Date:   Sat Oct 24 02:06:11 2020 +0900
+| | 
+| |     Merge commit 'ab94856b7b1604dd42eabfa6294a67f741adbc6c'
+| | 
+| * commit ab94856b7b1604dd42eabfa6294a67f741adbc6c
+| | Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| | Date:   Sat Oct 24 01:59:47 2020 +0900
+| | 
+| |     4th commit
+| | 
+| * commit a9ba0339abc09121ab3930749dc36841bce76725
+| | Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| | Date:   Sat Oct 24 01:59:31 2020 +0900
+| | 
+| |     3rd commit
+| | 
+| * commit 6cd4d71dddd92ec01c8295a4fa9ff68c1e43c45f
+| | Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| | Date:   Sat Oct 24 01:59:12 2020 +0900
+| | 
+| |     2nd commit
+| | 
+| * commit 4e97b34545938324bfc509997a37cce768285089
+|/  Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+|   Date:   Sat Oct 24 01:58:50 2020 +0900
+|   
+|       1st commit
+| 
+```
+訳あって、マージしているのでブランチが二本あります。
+
+### コミットの順番を入れ替える
+エディタが開くので入れ替えたいコミットの行を入れ替える。2nd commitと3rd commitを入れ替える。
+```
+$ git rebase -i 4e97b34
+Successfully rebased and updated refs/heads/master.
+```
+
+### 変更後のコミット履歴
+```
+* commit 6af55612974aee18a02bf4ff5254444b010b5a15 (HEAD -> master)
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Sat Oct 24 01:59:47 2020 +0900
+| 
+|     4th commit
+| 
+* commit edec38721cb89d340c56e497dac1934e7cacc73c
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Sat Oct 24 01:59:12 2020 +0900
+| 
+|     2nd commit
+| 
+* commit 88d17d41554ef854b22cf38e79b8c3e71cba229f
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Sat Oct 24 01:59:31 2020 +0900
+| 
+|     3rd commit
+| 
+* commit 4e97b34545938324bfc509997a37cce768285089
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Sat Oct 24 01:58:50 2020 +0900
+| 
+|     1st commit
+| 
+```
+##　ファイルの中身が変わってしまうコミットの入れ替えはCONFLICTのエラーが生じる
+例えば、2ndと4thのcommitを入れ替えようとするとエラーメッセージが出力される。commitの入れ替えができるのは、この様に、confilictを避けなければならない。
+```
+CONFLICT (modify/delete): test2.txt deleted in HEAD and modified in 2b0a62a... 4th commit. Version 2b0a62a... 4th commit of test2.txt left in tree.
+error: could not apply 2b0a62a... 4th commit
+Resolve all conflicts manually, mark them as resolved with
+"git add/rm <conflicted_files>", then run "git rebase --continue".
+You can instead skip this commit: run "git rebase --skip".
+To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply 2b0a62a... 4th commit
 ```
 
