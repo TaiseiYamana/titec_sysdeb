@@ -310,11 +310,11 @@ hello.cをコミット
 $ git add hello.c 
 $ git commit -m "first new branch create"
 ```
-タグ名の登録
+## タグ名の登録
 ```
 $ git tag tag-a
 ```
-コミット履歴の表示
+## コミット履歴の表示
 ```
 * commit c8bfc8760eba7c9c371cb006a042954d77607f05 (HEAD -> br-a, tag: tag-a)
 | Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
@@ -347,19 +347,78 @@ $ git tag tag-a
       message
 ```
 
+# 演習6
+## br-aをmainにマージ
+Fast-forwardはブランチのポインタをマージさせるブランチに移動させるマージのことである。
+Fast-forwardマージのオプジョンは`--no-ff`を記述してマージする。
+```
+$ git merge --no-ff br-a
+```
+### マージ後のコミット履歴
+```
+*   commit 0baba47a2daaa81df6a8baf42a7d18e9dc37b204 (HEAD -> master)
+|\  Merge: 6eb9d96 c8bfc87
+| | Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| | Date:   Fri Oct 23 15:54:01 2020 +0900
+| | 
+| |     Merge branch 'br-a'
+| | 
+| * commit c8bfc8760eba7c9c371cb006a042954d77607f05 (tag: tag-a, br-a)
+|/  Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+|   Date:   Fri Oct 23 15:39:49 2020 +0900
+|   
+|       first new branch create
+| 
+* commit 6eb9d963d6dfccc996ded7b3f6e6ba3bd0a455b4 (tag: v_1.0.0)
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Fri Oct 23 15:06:57 2020 +0900
+| 
+|     ハンクのコミット
+```
 
+## br-aとmasterに競合するコミットを加え、マージ
+演習5で作成したhello.cにmasterブランチとbr-aブランチにそれぞれ異なる(競合が起きるように)変更を加てそれぞれコミットを行う。
 
+### master側 hello.c
+<img width="534" alt="スクリーンショット 2020-10-23 23 18 08" src="https://user-images.githubusercontent.com/54575368/97015635-c2076e80-1586-11eb-947b-cf48c16371bd.png">
+### br-a側 hello.c
+<img width="533" alt="スクリーンショット 2020-10-23 23 21 47" src="https://user-images.githubusercontent.com/54575368/97015453-8ff60c80-1586-11eb-8b34-4dfabb13fd9a.png">
 
-
-
-
-
-
-
-
-
-
-
+## コミット後のコミット履歴
+```
+$ git log --graph --all
+* commit 363c8d08aad7e0ea564eb64b0e40e12e66eb79b5 (HEAD -> br-a)
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Fri Oct 23 16:00:53 2020 +0900
+| 
+|     For confilict at br-a
+|   
+| * commit cdf0baa660a5f424fdd65cb7a389748bcbb9521e (master)
+| | Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| | Date:   Fri Oct 23 15:56:49 2020 +0900
+| | 
+| |     For confilict at main
+| |   
+| *   commit 0baba47a2daaa81df6a8baf42a7d18e9dc37b204
+| |\  Merge: 6eb9d96 c8bfc87
+| |/  Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+|/|   Date:   Fri Oct 23 15:54:01 2020 +0900
+| |   
+| |       Merge branch 'br-a'
+| | 
+* | commit c8bfc8760eba7c9c371cb006a042954d77607f05 (tag: tag-a)
+|/  Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+|   Date:   Fri Oct 23 15:39:49 2020 +0900
+|   
+|       first new branch create
+| 
+* commit 6eb9d963d6dfccc996ded7b3f6e6ba3bd0a455b4
+| Author: 山名泰生 <yamanataisei@yamanayasuonoMacBook-Pro.local>
+| Date:   Fri Oct 23 15:06:57 2020 +0900
+| 
+|     ハンクのコミット
+| 
+```
 
 
 
