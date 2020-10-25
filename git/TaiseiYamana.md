@@ -760,7 +760,7 @@ addを取り消すことができた。
 前提として、誰が見てもどういったコミットの内容かわかるメッセージがいい。  
 [誰にとってもわかりやすいGitのコミットメッセージを考える ｜ Tips Note by TAM](https://www.tam-tam.co.jp/tipsnote/program/post16686.html)  
 
-<img width="711" alt="スクリーンショット 2020-10-25 12 52 35" src="https://user-images.githubusercontent.com/54575368/97098516-19115e80-16c1-11eb-91ea-0bcbbf8e0b17.png">
+<img width="711" alt="スクリーンショット 2020-10-25 12 52 35" src="https://user-images.githubusercontent.com/54575368/97098536-4d851a80-16c1-11eb-8405-149874696921.png">
 
 このサイトには上記の動詞から始めるのが、型とするのがいいと記されている。
 
