@@ -747,6 +747,7 @@ Changes to be committed:
 $ git reset HEAD foo
 ```
 `git status`で確認
+```
 $ git status
 On branch master
 Untracked files:
@@ -756,11 +757,10 @@ Untracked files:
 addを取り消すことができた。
 
 # 演習10
-- 良い例：
+## 良い例：
 前提として、誰が見てもどういったコミットの内容かわかるメッセージがいい。  
-[誰にとってもわかりやすいGitのコミットメッセージを考える ｜ Tips Note by TAM](https://www.tam-tam.co.jp/tipsnote/program/post16686.html)  
-
-<img width="711" alt="スクリーンショット 2020-10-25 12 52 35" src="https://user-images.githubusercontent.com/54575368/97098536-4d851a80-16c1-11eb-8405-149874696921.png">
+[誰にとってもわかりやすいGitのコミットメッセージを考える ｜ Tips Note by TAM](https://www.tam-tam.co.jp/tipsnote/program/post16686.html)
+<img width="711" alt="スクリーンショット 2020-10-25 12 52 35" src="https://user-images.githubusercontent.com/54575368/97099098-3f86c800-16c8-11eb-8e22-cf2f2eaa5ddb.png">
 
 このサイトには上記の動詞から始めるのが、型とするのがいいと記されている。
 
@@ -768,9 +768,17 @@ githubでstarが高いリポジトリーを探した。openposeというディ�
 <img width="907" alt="スクリーンショット 2020-10-25 12 52 46" src="https://user-images.githubusercontent.com/54575368/97098515-17e03180-16c1-11eb-9341-3b8cb4f328c9.png">
 
 
-コミットメッセージは大体動詞からはじまってる。まずコミットをみて、なんのコミットを直近でしたのかが、文頭の動詞で判断できる。
-- 悪い例:
-# 演習11
+コミットメッセージは大体動詞からはじまってる。まずコミットをみて、なんのコミットを直近でしたのかが、文頭の動詞で判断できる。この様なリポジトリーのコミットメッセージは良い例である。
+## 悪い例:
+<img width="903" alt="スクリーンショット 2020-10-25 13 57 03" src="https://user-images.githubusercontent.com/54575368/97099220-08191b00-16ca-11eb-8477-b08c8192b114.png">
+悪い例をあげると、このように動詞で始まらなかったりするものである。
+しかし、個人リポジトリーでただファイルの注釈をしているを記述している場合もあるが、他の人が見た時にわかりずらいメッセージである。
 
-<img width="711" alt="スクリーンショット 2020-10-25 12 52 35" src="https://user-images.githubusercontent.com/54575368/97098536-4d851a80-16c1-11eb-8405-149874696921.png">
+
+# 演習11
+gitの練習をサイトでしてみた感想としては、最初にやるには物凄いやりやすいと思いました。ツリーの状態がすぐわかるのでいいと思いました。  
+この演習は、gitの作業のながれや、コマンドの意味をしれるとおもいます。  
+
+しかし、今回のgit演習をした後なので、実践的にするには簡単なすぎる演習でした。
+
 
