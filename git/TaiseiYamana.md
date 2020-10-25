@@ -728,3 +728,47 @@ $ git commit --amend -m "4th commit : 2nd commitと3rd commitを入れ替えた"
       1st commit
 ```
 
+# 演習9
+fooをaddする。
+
+```
+git add foo
+```
+`git status`で確認
+```
+$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   foo
+```
+`git reset HEAD ファイル名`でaddの取り消し
+```
+$ git reset HEAD foo
+```
+`git status`で確認
+$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	foo
+```
+addを取り消すことができた。
+
+# 演習10
+- 良い例：
+前提として、誰が見てもどういったコミットの内容かわかるメッセージがいい。  
+[誰にとってもわかりやすいGitのコミットメッセージを考える ｜ Tips Note by TAM](https://www.tam-tam.co.jp/tipsnote/program/post16686.html)  
+
+<img width="708" alt="スクリーンショット 2020-10-25 12 44 41" src="https://user-images.githubusercontent.com/54575368/97098403-ddc26000-16bf-11eb-854d-aa74ab650e17.png">
+
+このサイトには上記の動詞から始めるのが、型とするのがいいと記されている。
+
+githubでstarが高いリポジトリーを探した。openposeというディープラーニングモデルの公式リポジトリーを例にあげる。
+<img width="910" alt="スクリーンショット 2020-10-25 12 48 32" src="https://user-images.githubusercontent.com/54575368/97098443-67722d80-16c0-11eb-8dee-b945590b0b86.png">
+
+コミットメッセージは大体動詞からはじまってる。まずコミットをみて、なんのコミットを直近でしたのかが、文頭の動詞で判断できる。
+- 悪い例:
+# 演習11
+
+
