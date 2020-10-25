@@ -760,12 +760,13 @@ addを取り消すことができた。
 前提として、誰が見てもどういったコミットの内容かわかるメッセージがいい。  
 [誰にとってもわかりやすいGitのコミットメッセージを考える ｜ Tips Note by TAM](https://www.tam-tam.co.jp/tipsnote/program/post16686.html)  
 
-<img width="708" alt="スクリーンショット 2020-10-25 12 44 41" src="https://user-images.githubusercontent.com/54575368/97098403-ddc26000-16bf-11eb-854d-aa74ab650e17.png">
+<img width="711" alt="スクリーンショット 2020-10-25 12 52 35" src="https://user-images.githubusercontent.com/54575368/97098516-19115e80-16c1-11eb-91ea-0bcbbf8e0b17.png">
 
 このサイトには上記の動詞から始めるのが、型とするのがいいと記されている。
 
 githubでstarが高いリポジトリーを探した。openposeというディープラーニングモデルの公式リポジトリーを例にあげる。
-<img width="910" alt="スクリーンショット 2020-10-25 12 48 32" src="https://user-images.githubusercontent.com/54575368/97098443-67722d80-16c0-11eb-8dee-b945590b0b86.png">
+<img width="907" alt="スクリーンショット 2020-10-25 12 52 46" src="https://user-images.githubusercontent.com/54575368/97098515-17e03180-16c1-11eb-9341-3b8cb4f328c9.png">
+
 
 コミットメッセージは大体動詞からはじまってる。まずコミットをみて、なんのコミットを直近でしたのかが、文頭の動詞で判断できる。
 - 悪い例:
