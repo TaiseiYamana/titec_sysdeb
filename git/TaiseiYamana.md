@@ -773,3 +773,4 @@ githubでstarが高いリポジトリーを探した。openposeというディ�
 # 演習11
 
 <img width="711" alt="スクリーンショット 2020-10-25 12 52 35" src="https://user-images.githubusercontent.com/54575368/97098536-4d851a80-16c1-11eb-8405-149874696921.png">
+
