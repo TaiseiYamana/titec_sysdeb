@@ -308,5 +308,19 @@ $ git origin main
 
 <img width="744" alt="スクリーンショット 2020-11-13 5 06 39" src="https://user-images.githubusercontent.com/54575368/98990618-09719100-256e-11eb-9c61-324f457e2d88.png">
 
+## 演習9
+### pyenvのインストール
+pyenvのリポジトリーのクローン
 
+```
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+```
 
+パスを通す
+
+```
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
+echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
+echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+source ~/.bashrc
+```
