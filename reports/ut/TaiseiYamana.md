@@ -41,7 +41,7 @@ class TestCalc(unittest.TestCase):
 
 参考：https://techacademy.jp/magazine/18783
 
-#　演習3
+# 演習3
 
 ## 作りたい関数：3次ベクトルの外積
 ### 第一回ユニットテスト
