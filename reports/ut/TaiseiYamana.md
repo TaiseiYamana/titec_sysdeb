@@ -89,13 +89,15 @@ FAILED (errors=1)
 うまくいっていない。インデックス３が参照外であるというメッセージがでている。
 np.arrayのインデックスの開始は0からであるので、すべてのインデックスを-1にしてもう一度テスト実行する。
 
+## 第二回ユニットテスト
 訂正後
 ```
 def CROSS(A,B):
     return (A[1]*B[2]+A[2]*B[1])-(A[0]*B[2]+A[2]*B[0])+(A[0]*B[1]+A[1]*B[0])
 ```
 
-第二回テスト結果
+テスト結果
+
 ```
 ======================================================================
 ERROR: test_cross (testut.TestCalc)
@@ -114,3 +116,70 @@ Ran 1 test in 0.003s
 
 FAILED (errors=1)
 ```
+
+## 第３回ユニットテスト
+訂正後
+```
+def CROSS(A,B):
+    C = np.array([0,0,0])
+    C[0] = A[1]*B[2]-B[1]*A[2]
+    C[1] = -1*(A[0]*B[2]-B[0]*A[2])
+    C[2] = A[0]*B[1]-B[0]*A[1]
+    return C
+```
+
+テスト結果
+
+```
+F
+======================================================================
+FAIL: test_cross (testut.TestCalc)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/yamanataisei/Documents/jupyter-notebook/OSSproject/testut.py", line 19, in test_cross
+    self.assertEqual(np.cross(a, b).all,CROSS(a,b).all)
+AssertionError: <built-in method all of numpy.ndarray object at 0x117b166c0> != <built-in method all of numpy.ndarray object at 0x117b168f0>
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+```
+
+jupyter notebookで確認したが、値が同じだったがエラーが生じてしまった。調べてみるとこれは多次元配列の比較がうまくいかないらしい。
+今回の様な小さい配列だと要素を取り出して、比較できるのでそちらを行う。実践的に考えると大きい行列の比較をすると思うので、実践向きではない、解決策を考えなければいけない。
+
+##　第４回ユニットテスト
+
+訂正後　テストコード側
+```
+import unittest
+import calc
+
+import numpy as np
+
+a = np.array([1,2,4])
+b = np.array([5,4,6])
+
+
+def CROSS(A,B):
+    C = np.array([0,0,0])
+    C[0] = A[1]*B[2]-B[1]*A[2]
+    C[1] = -1*(A[0]*B[2]-B[0]*A[2])
+    C[2] = A[0]*B[1]-B[0]*A[1]
+    return C
+class TestCalc(unittest.TestCase):
+  def test_cross(self):
+      self.assertEqual(np.cross(a, b)[0],CROSS(a,b)[0])
+      self.assertEqual(np.cross(a, b)[1],CROSS(a,b)[1])
+      self.assertEqual(np.cross(a, b)[2],CROSS(a,b)[2])
+```
+
+結果
+```
+(testenv) yamanayasuonoMacBook-Pro:OSSproject yamanataisei$ Python -m unittest
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+```
+となり、うまく関数ができていた。
