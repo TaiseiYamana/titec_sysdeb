@@ -41,3 +41,76 @@ class TestCalc(unittest.TestCase):
 
 参考：https://techacademy.jp/magazine/18783
 
+#　演習3
+
+## 作りたい関数：3次ベクトルの外積
+### 第一回ユニットテスト
+```
+import unittest
+import calc
+
+import numpy as np
+
+a = np.array([1,2,4])
+b = np.array([5,4,6])
+
+
+def CROSS(A,B):
+    return (A[2]*B[3]+A[3]*B[2])-(A[1]*B[3]+A[3]*B[1])+(A[1]*B[2]+A[2]*B[1])
+
+class TestCalc(unittest.TestCase):
+  def test_cross(self):
+      self.assertEqual(np.cross(a, b),CROSS(a,b))
+```
+
+テスト実行
+
+```
+$ Python -m unittest
+```
+
+結果
+```
+======================================================================
+ERROR: test_cross (testut.TestCalc)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/yamanataisei/Documents/jupyter-notebook/OSSproject/testut.py", line 18, in test_cross
+    self.assertEqual(np.cross(a, b),CROSS(a,b))
+  File "/Users/yamanataisei/Documents/jupyter-notebook/OSSproject/testut.py", line 12, in CROSS
+    return (A[2]*B[3]+A[3]*B[2])-(A[1]*B[3]+A[3]*B[1])+(A[1]*B[2]+A[2]*B[1])
+IndexError: index 3 is out of bounds for axis 0 with size 3
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)
+```
+うまくいっていない。インデックス３が参照外であるというメッセージがでている。
+np.arrayのインデックスの開始は0からであるので、すべてのインデックスを-1にしてもう一度テスト実行する。
+
+訂正後
+```
+def CROSS(A,B):
+    return (A[1]*B[2]+A[2]*B[1])-(A[0]*B[2]+A[2]*B[0])+(A[0]*B[1]+A[1]*B[0])
+```
+
+第二回テスト結果
+```
+======================================================================
+ERROR: test_cross (testut.TestCalc)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/yamanataisei/Documents/jupyter-notebook/OSSproject/testut.py", line 16, in test_cross
+    self.assertEqual(np.cross(a, b),CROSS(a,b))
+  File "/Users/yamanataisei/.pyenv/versions/3.9.0/lib/python3.9/unittest/case.py", line 831, in assertEqual
+    assertion_func(first, second, msg=msg)
+  File "/Users/yamanataisei/.pyenv/versions/3.9.0/lib/python3.9/unittest/case.py", line 821, in _baseAssertEqual
+    if not first == second:
+ValueError: The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+
+FAILED (errors=1)
+```
