@@ -147,7 +147,7 @@ Ran 1 test in 0.000s
 jupyter notebookで確認したが、値が同じだったがエラーが生じてしまった。調べてみるとこれは多次元配列の比較がうまくいかないらしい。
 今回の様な小さい配列だと要素を取り出して、比較できるのでそちらを行う。実践的に考えると大きい行列の比較をすると思うので、実践向きではない、解決策を考えなければいけない。
 
-##　第４回ユニットテスト
+## 第４回ユニットテスト
 
 訂正後　テストコード側
 ```
@@ -183,3 +183,85 @@ Ran 1 test in 0.000s
 OK
 ```
 となり、うまく関数ができていた。
+
+# 演習4
+演習の答えを https://github.com/uchan-nos/titech-sysdev-2020/tree/report-TaiseiYamana/reports/ut/TaiseiYamana  にアップロード
+
+## 定義した関数
+- `flip関数` : ドアを開閉する関数
+- `sum_door` : 空いてるドアのカウントを行う関数
+```
+void flip(int *door,int doornum, int step){
+    for(int i = 0; i < doornum;i++){
+        if ((i+1)%step == 0){
+        if(door[i] == 0)
+            door[i] = 1;
+        else door[i] = 0;
+        }
+    }
+}
+int sum_door(int *door,int doornum){
+    int sum =0;
+    for(int i = 0;i < doornum;i ++){
+        if( door[i] == 1)
+            sum++;
+    }
+    return sum;
+}
+```
+## テストの実施
+ドアの数10,アクセス回数3にしてテストを実施した。
+```
+static void test_flip(void)
+{
+  int door[10] = {0};
+  int result[10] = {1,0,0,0,1,1,1,0,0,0};
+  
+  for(int i = 1 ;i <= 3;i++)
+  flip(door ,doornum,i);
+    
+    
+  for(int i = 0; i < 10;i++)
+      assert(door[i] == result[i]);
+}
+static void test_sum_door(void)
+{
+    int door[10] = {1,0,0,0,1,1,1,0,0,0};
+    int sum;
+    sum = sum_door(door,10);
+    assert(4 == sum);
+}
+```
+### テスト結果
+![スクリーンショット 2020-11-14 20 47 07](https://user-images.githubusercontent.com/54575368/99146348-93c70b80-26ba-11eb-8bf8-ada10a704742.png)
+
+## 100doorの答え
+mainに次コードを実施して実行
+
+#### hiker.test.c
+```
+#include "hiker.h"
+#include <assert.h>
+#include <stdio.h>
+
+#define doornum 100
+#define stepnum 3
+
+int main(void)
+{  
+    int door[doornum] = {0};
+    int sum;
+    
+    for(int i = 1 ;i <= stepnum;i++)
+        flip(door ,doornum,i);
+    
+    sum = sum_door(door,doornum);
+    
+    printf("Opened Door: %d\n",sum);
+    
+}
+```
+#### 実行結果
+![スクリーンショット 2020-11-14 20 50 36](https://user-images.githubusercontent.com/54575368/99146397-0e902680-26bb-11eb-8e16-a7bed10c86b3.png)
+
+100doorで３回アクセスした結果、最終的には49このドアが空いているという結果が得られる。
