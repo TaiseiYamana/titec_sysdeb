@@ -23,7 +23,14 @@ Githubのリポジトリの`[Create new file]`で次の内容で`.circleci/confi
        - checkout
        - run: echo "hello , world"
 ```
-### CircleCI でビルドを準備
+### CircleCI 準備
 #### 1. CircleCIの[登録ページ](https://circleci.com/ja/signup)でGitHubアカウントでログイン
-#### 2. 作成したリポジトリを CircleCI の新しいプロジェクトとして追加
+#### 2. リポジトリを CircleCI にセットアップ
+
+### Github側でコミットを行う。
+`.circleci/config.yml `をコミット
+
+### Circle側のログを確認
+
+
 ## 演習3
