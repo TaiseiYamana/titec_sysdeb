@@ -126,7 +126,6 @@ jobs:
           command: python -m unittest
           
       - run: gcc -o HelloWorld HelloWorld.c
-      - run: ls
       - run:
           command: mkdir artifacts ; mv HelloWorld artifacts/
                     
@@ -144,3 +143,9 @@ jobs:
 そして`PAHT`に作成したディレクトリーのパスを入れる。
 
 ### 結果
+
+<img width="1395" alt="スクリーンショット 2020-11-14 16 01 32" src="https://user-images.githubusercontent.com/54575368/99141863-ad545d00-2692-11eb-98ff-04e65360cd88.png">
+
+<img width="1418" alt="スクリーンショット 2020-11-14 16 01 58" src="https://user-images.githubusercontent.com/54575368/99141872-bcd3a600-2692-11eb-8539-83f1b7f1d1c1.png">
+
+artifactsがアップロードされたことを確認できた。
