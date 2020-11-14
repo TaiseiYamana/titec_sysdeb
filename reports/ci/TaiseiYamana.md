@@ -8,7 +8,8 @@ gcc のインストール `command: 'sudo apt install gcc'`
 
 記述が違うだけでlinuxのコマンドが多い。それはdockerのimageによって異なるが、linuxのコマンドが実行できるimageのセットが操作しすそうである。
 
-### 2つめ　URL:
+### 2つめ　URL:https://github.com/elmariachi111/openzeppelin-sdk/blob/master/.circleci/config.yml
+java scriptの場合では`command: yarn`が実行されている。
 
 ## 演習2
 
