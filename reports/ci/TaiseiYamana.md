@@ -2,6 +2,13 @@
 2020年11月13日（金）
 
 ## 演習1
+### 1つめ URL:https://github.com/galek/galek.github.io/blob/master/.circleci/config.yml
+docker imageのセットアップ`- image: circleci/node:10.0.0`
+gcc のインストール `command: 'sudo apt install gcc'`
+
+記述が違うだけでlinuxのコマンドが多い。それはdockerのimageによって異なるが、linuxのコマンドが実行できるimageのセットが操作しすそうである。
+
+### 2つめ　URL:
 
 ## 演習2
 
