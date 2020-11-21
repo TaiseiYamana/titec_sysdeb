@@ -43,11 +43,50 @@ Your public key has been saved in ./id_rsa.pub.
 ## 秘密鍵をCircle Ciに登録
 [サイドメニュー]→[projects]→[目的のリポジトリの選択]→[project settings]→[SSH Keys]→[Additional SSH Keys]→[Add SHH key]
 
-<img width="1015" alt="スクリーンショット 2020-11-21 19 52 07" src="https://user-images.githubusercontent.com/54575368/99875437-10199b80-2c33-11eb-9cba-fd637668f33d.png">
+<img width="968" alt="スクリーンショット 2020-11-21 22 37 14" src="https://user-images.githubusercontent.com/54575368/99878639-4ca4c180-2c4a-11eb-9ae0-5318b739979e.png">
 
 Fingerprintををコピーする。
 
 ## Fingerprintを.circleci/config.ymlに登録
+Fingerprintを記述
+<img width="611" alt="スクリーンショット 2020-11-21 22 29 11" src="https://user-images.githubusercontent.com/54575368/99878561-a5c02580-2c49-11eb-84ac-6bf9713e6ab2.png">
+
+## シェルスクリプトの実行
+`a.out`と`a.txt`のコミットとリモートへpushする
+
+```
+#!/bin/sh -ex
+target_branch="ghp-deploy"
+git branch $target_branch
+git config --global user.name "CircleCI deployer"
+git config --global user.email "<>"
+git checkout $target_branch
+git reset --hard origin/master
+
+gcc -o a.out a.c
+echo "output of a.out: $(./a.out)" > a.txt
+
+git add a.out a.txt
+git commit -m "[skip ci] updates GitHub Pages"
+if [ $? -ne 0 ]; then
+  echo "nothing to commit"
+  exit 0
+fi
+
+git remote set-url origin "https://github.com/TaiseiYamana/myproj.git"
+git push -f origin $target_branch
+
+```
+
+## deployの確認
+
+<img width="914" alt="スクリーンショット 2020-11-21 22 27 32" src="https://user-images.githubusercontent.com/54575368/99878823-75798680-2c4b-11eb-95d5-42f0cf99d4c0.png">
+
+ここでoriginの参照が、なぜかgithubのmainブランチではなく、サブブランチのghp-deployになっている。 `git log` で確認してもmainブランチがorigin???
+よって、github上では、mainブランチに`a.out`と`a.txt`がコミットされず、ghp-deployのブランチにコミットされる。  
+もし、mainにコミットしたい場合、普通にtarget_branchをmainに設定する・
+
+
 
 # 演習3
 # Pip installの操作
