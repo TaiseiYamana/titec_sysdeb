@@ -82,8 +82,8 @@ git push -f origin $target_branch
 
 <img width="914" alt="スクリーンショット 2020-11-21 22 27 32" src="https://user-images.githubusercontent.com/54575368/99878823-75798680-2c4b-11eb-95d5-42f0cf99d4c0.png">
 
-ここでoriginの参照が、なぜかgithubのmainブランチではなく、サブブランチのghp-deployになっている。 `git log` で確認してもmainブランチがorigin???
-よって、github上では、mainブランチに`a.out`と`a.txt`がコミットされず、ghp-deployのブランチにコミットされる。  
+ここでoriginの参照が、なぜかgithubのmainブランチではなく、サブブランチのghp-deployになっている。 `git log` で確認してもmainブランチがorigin???  
+よって、github上では、mainブランチに`a.out`と`a.txt`がコミットされず、ghp-deployのブランチにコミットされる。    
 もし、mainにコミットしたい場合、普通にtarget_branchをmainに設定する・
 
 
